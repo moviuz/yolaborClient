@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <include layout="@layout/toolbar"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:layout_below="@+id/appbar">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:minHeight="500dp">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="313dp"
+                android:layout_height="31dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/service"
+                        tools:layout_editor_absoluteX="29dp"
+                        tools:layout_editor_absoluteY="173dp" />
+
+                    <RadioButton
+                        android:id="@+id/raBtnInterpetre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/ra_btn_interpretation"
+                        tools:layout_editor_absoluteX="234dp"
+                        tools:layout_editor_absoluteY="164dp" />
+
+                    <RadioButton
+                        android:id="@+id/raBtnTraslate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/ra_btn_traslation"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="106dp"
+                        tools:layout_editor_absoluteY="164dp" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="315dp"
+                android:layout_height="22dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/type"
+                    tools:layout_editor_absoluteX="13dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_company"
+                    android:layout_width="236dp"
+                    android:layout_height="match_parent"
+                    tools:layout_editor_absoluteX="85dp"
+                    tools:layout_editor_absoluteY="40dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout8"
+                android:layout_width="317dp"
+                android:layout_height="23dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/languaje"
+                    tools:layout_editor_absoluteX="16dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_languaje"
+                    android:layout_width="238dp"
+                    android:layout_height="match_parent"
+                    tools:layout_editor_absoluteX="86dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout9"
+                android:layout_width="313dp"
+                android:layout_height="38dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/starts"
+                    tools:layout_editor_absoluteY="35dp" />
+
+                <TextView
+                    android:id="@+id/txt_result"
+                    android:layout_width="179dp"
+                    android:layout_height="26dp"
+                    android:background="@color/grey_10"
+                    android:backgroundTint="@color/activity16InputChatBackground"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/grey_90"
+                    android:textSize="12dp"
+                    tools:layout_editor_absoluteY="31dp" />
+
+                <ImageButton
+                    android:id="@+id/btn_date"
+                    android:layout_width="38dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    app:srcCompat="@drawable/ic_calendar"
+                    tools:ignore="MissingConstraints,VectorDrawableCompat"
+                    tools:layout_editor_absoluteY="31dp" />
+
+                <ImageButton
+                    android:id="@+id/btn_time"
+                    android:layout_width="38dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    app:srcCompat="@drawable/ic_clock"
+                    tools:ignore="MissingConstraints,VectorDrawableCompat"
+                    tools:layout_editor_absoluteX="320dp"
+                    tools:layout_editor_absoluteY="123dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="62dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/scope"
+
+                    tools:layout_editor_absoluteY="157dp" />
+
+                <EditText
+                    android:id="@+id/editText"
+                    style="@style/LoginSignUp5Input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:hint="@string/units" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/hours"
+                    tools:layout_editor_absoluteY="157dp" />
+
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="81dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/total_cost"
+                    tools:layout_editor_absoluteY="157dp" />
+
+                <EditText
+                    android:id="@+id/editCost"
+                    style="@style/LoginSignUp5Input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:hint="@string/cost"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout11"
+                android:layout_width="355dp"
+                android:layout_height="244dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout92"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
+
+                <EditText
+                    android:id="@+id/editText4"
+                    style="@style/LoginSignUp5Input"
+                    android:layout_width="333dp"
+                    android:layout_height="38dp"
+                    android:hint="@string/location"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="184dp" />
+
+                <EditText
+                    android:id="@+id/editText5"
+                    style="@style/LoginSignUp5Input"
+                    android:layout_height="38dp"
+                    android:hint="@string/service_receiver"
+                    tools:layout_editor_absoluteY="235dp" />
+
+                <EditText
+                    android:id="@+id/editText6"
+                    style="@style/LoginSignUp5Input"
+                    android:layout_height="38dp"
+                    android:hint="@string/service_giver"
+                    tools:layout_editor_absoluteY="286dp" />
+
+                <EditText
+                    android:id="@+id/editText7"
+                    style="@style/LoginSignUp5Input"
+                    android:layout_height="38dp"
+                    android:hint="@string/description"
+                    tools:layout_editor_absoluteY="337dp" />
+
+                <EditText
+                    style="@style/LoginSignUp5Input"
+                    android:layout_height="38dp"
+                    android:hint="@string/addres_detail"
+                    tools:layout_editor_absoluteY="388dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout92"
+                android:layout_width="313dp"
+                android:layout_height="38dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
+
+                <TextView
+                    android:id="@+id/textView122"
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:text="Follow up"
+                    tools:layout_editor_absoluteY="35dp" />
+
+                <TextView
+                    android:id="@+id/result2"
+                    android:layout_width="180dp"
+                    android:layout_height="26dp"
+                    android:background="@color/grey_10"
+                    android:backgroundTint="@color/activity16InputChatBackground"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/grey_90"
+                    android:textSize="12dp"
+                    tools:layout_editor_absoluteY="31dp" />
+
+                <ImageButton
+                    android:id="@+id/btn_date2"
+                    android:layout_width="38dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    app:srcCompat="@drawable/ic_calendar"
+                    tools:ignore="MissingConstraints,VectorDrawableCompat"
+                    tools:layout_editor_absoluteY="31dp" />
+
+                <ImageButton
+                    android:id="@+id/btn_time2"
+                    android:layout_width="38dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    app:srcCompat="@drawable/ic_clock"
+                    tools:ignore="MissingConstraints,VectorDrawableCompat"
+                    tools:layout_editor_absoluteX="320dp"
+                    tools:layout_editor_absoluteY="123dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout67"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout92">
+
+                <EditText
+                    style="@style/LoginSignUp5Input"
+                    android:layout_height="38dp"
+                    android:hint="@string/follow_up_desp"
+                    tools:layout_editor_absoluteY="388dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout67"
+                android:layout_width="315dp"
+                android:layout_height="22dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
+
+                <TextView
+                    android:id="@+id/textView88"
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:text="Payment"
+                    tools:layout_editor_absoluteX="13dp" />
+
+                <Spinner
+                    android:id="@+id/spinner28"
+                    android:layout_width="246dp"
+                    android:layout_height="match_parent"
+                    tools:layout_editor_absoluteX="85dp"
+                    tools:layout_editor_absoluteY="40dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout67">
+
+                <EditText
+                    style="@style/LoginSignUp5Input"
+                    android:layout_height="38dp"
+                    android:hint="@string/coments"
+                    tools:layout_editor_absoluteY="388dp" />
+            </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:text="@string/update_information"
+            android:textColor="@color/icons"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

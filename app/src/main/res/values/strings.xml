@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">yolabor Client</string>
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_singin">Singin</string>
+
+    <!--MenuDrawer-->
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+    <string name="perfil">Profile</string>
+    <string name="my_jobs">My Jobs</string>
+    <string name="historico">History</string>
+    <string name="settings">Settings</string>
+    <string name="feedback">Feedback</string>
+    <string name="logout">Logout</string>
+    <!--Solicitud programada-->
+    <string name="middle_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin</string>
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin
+        \n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin
+    </string>
+
+    <string name="section_format">Section : %1$d</string>
+    <string name="home_item">Home</string>
+
+    <!--JOB REQUES-->
+    <string name="service">Service</string>
+    <string name="ra_btn_interpretation">Interpretation</string>
+    <string name="ra_btn_traslation">Traslation</string>
+    <string name="type">Type</string>
+    <string name="languaje">Languaje</string>
+    <string name="starts">Starts</string>
+    <string name="duration">Duration</string>
+    <string name="horas">hrs.</string>
+    <string name="location">Location</string>
+    <string name="service_receiver">Service Receiver</string>
+    <string name="service_giver">Service Giver</string>
+    <string name="description">Description</string>
+    <string name="addres_detail">Address Detail</string>
+    <string name="units">Units</string>
+    <string name="cost">Cost</string>
+    <string name="follow_up_desp">Follow up Description</string>
+    <string name="coments">Coments</string>
+    <string name="scope">Scope</string>
+    <string name="hours">hours</string>
+    <string name="total_cost">Total Cost</string>
+
+    <!--Profile-->
+    <string name="phone">Phone</string>
+    <string name="itin">ITIN/SSN</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="gender">Gender</string>
+    <string name="company">Company</string>
+    <string name="parnert">Partner</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+
+    <!--toolbarRequest-->
+    <string name="current">Current</string>
+    <string name="chat">Chat</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="update_information">Update Information</string>
+    <string name="create_account">Create Account</string>
+
+    <!--Job Current-->
+
+    <!--Facebook strings-->
+
+    <string name="facebook_app_id">372758993192112</string>
+    <string name="fb_login_protocol_scheme">fb372758993192112</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+</resources>

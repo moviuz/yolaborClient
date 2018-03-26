@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1074171390384",
+    "firebase_url": "https://yolabor-652c1.firebaseio.com",
+    "project_id": "yolabor-652c1",
+    "storage_bucket": "yolabor-652c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074171390384:android:af1a49d54687e911",
+        "android_client_info": {
+          "package_name": "mx.com.omnius.yolaborWorker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074171390384-ghfkt9ecij0hdbq9j1sq5lr1s309qkev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.com.omnius.yolaborWorker",
+            "certificate_hash": "2d66e1d48a81c31cbdb0cacc6808483bc2647d90"
+          }
+        },
+        {
+          "client_id": "1074171390384-o4g2llqm7fvjqud454te52tnraei67hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI8RbgneVLcQhHJxNFFimH7Wjs_7NYWvg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074171390384-o4g2llqm7fvjqud454te52tnraei67hq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
