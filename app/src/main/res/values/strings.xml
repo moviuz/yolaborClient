@@ -71,6 +71,12 @@
 
     <!--Job Current-->
 
+    <!--Feedback Strings -->
+    <string name="feedbak">Feddback</string>
+    <string name="support">Support</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+
     <!--Facebook strings-->
 
     <string name="facebook_app_id">372758993192112</string>
