@@ -34,6 +34,8 @@ public class SettingActivity extends AppCompatActivity {
         initToolbar();
         time.setAdapter(new ArrayAdapter<String>(time.getContext(), android.R.layout.simple_spinner_item,times));
         radius.setAdapter(new ArrayAdapter<String>(radius.getContext(),android.R.layout.simple_spinner_item,radiuss));
+
+
     }
 
 

@@ -226,6 +226,64 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
             requestQueue.add(new VolleyHttpRequest(Request.Method.GET, map,
                     Constants.ServiceCode.NEW_CLIENT, this, this)); */
     }
+    private void registrar() {
+
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put(Constants.URL,Constants.ServiceType.SINGIN
+
+                + Constants.Params.FIRSTNAME + "="
+                + txtName.getText().toString() + "&"
+                + Constants.Params.LASTNAME + "="
+                + txtLastName.getText().toString() + "&"
+                + Constants.Params.EMAIL + "="
+                + txtEmail.getText().toString() + "&"
+                + Constants.Params.PHONE + "="
+                + textPhone.getText().toString() + "&"
+                + Constants.Params.PASSWORD + "="
+                + textPassword.getText().toString() + "&"
+                + Constants.Params.BIRTHDATE + "="
+                + textBirtdate.getText().toString() + "&"
+                + Constants.Params.GENDER + "="
+                + gender.toString() + "&"
+                + Constants.Params.ITIN + "="
+                + textItin.getText().toString() + "&"
+                + Constants.Params.COMPANY + "="
+                + "1" + "&"
+                + Constants.Params.PARTNER +  "="
+                +  "1" + "&"
+                + Constants.Params.LOGINMETHOD
+
+                + Constants.Params.MOTHERLENGUAGE +"="
+                + "1" + "&"
+                + Constants.Params.AVIABILITY + "="
+                + "Looking for job" + "&"
+                + Constants.Params.EXPERIENCE + "="
+                + "5" + "&"
+                + Constants.Params.RESUME + "="
+                + "LOREM IMPUTS ASPA ASKID ASDI" + "&"
+                + Constants.Params.LATITUDATEND + "="
+                + YolaborApplication.preferenceHelper.getLongitudeC() + "&"
+                + Constants.Params.LONGITUATTEND + "="
+                + YolaborApplication.preferenceHelper.getLatitudeC() + "&"
+                + Constants.Params.RADIOATEEND + "="
+                + "0" + "&"
+                + Constants.Params.LATITUDE + "="
+                + YolaborApplication.preferenceHelper.getLongitudeC() + "&"
+                + Constants.Params.LONGITUDE + "="
+                + YolaborApplication.preferenceHelper.getLatitudeC() + "&"
+                + Constants.Params.LOGINMETHOD + "="
+                + "N" + "&"
+                + Constants.Params.ADDRESATEND + "="
+                + "a"
+
+        );
+
+        requestQueue.add(new VolleyHttpRequest(Request.Method.GET, map,
+                Constants.ServiceCode.NEW_CLIENT, this, this));
+        Toast.makeText(this, "REGISTREAR", Toast.LENGTH_SHORT).show();
+
+    }
+
 
     private void obtenerFecha(){
             DatePickerDialog recogerFecha = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {

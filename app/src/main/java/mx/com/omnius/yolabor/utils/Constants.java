@@ -28,6 +28,7 @@ public class Constants {
         public static final String SINGIN = HOST_URL + "yolabor/webresources/service/setClient?";
         public static final String HISTORY = HOST_URL + "yolabor/webresources/service/getAllJobItemByClient?";
         public static final String ALLCOMPANY = HOST_URL + "yolabor/webresources/service/getAllCompany?";
+        public static final String SUPPORT = HOST_URL + "yolabor/webresources/service/setSupport?";
 
 
     }
@@ -39,6 +40,7 @@ public class Constants {
         public static final int NEW_CLIENT = 3;
         public static final int HISTORY_CLIENT= 4;
         public static final int ALLCOMPANY = 5;
+        public static final int SUPPORT = 6;
     }
 
     // webservice key constants
@@ -55,6 +57,15 @@ public class Constants {
         public static final String PHONE = "phone";
         public static final String IDCLIENT = "idClient";
         public static final String HISTORY = "history";
+        public static final String TYPE = "type";
+        public static final String SOURCE = "source";
+        public static final String IDUSER = "idUser";
+        public static final String MESSAGE = "message";
+        public static final String GENDER = "gender";
+        public static final String COMPANY = "idCompany";
+        public static final String PARTNER = "idPartner";
+
+
 
 
 

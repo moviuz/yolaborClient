@@ -159,6 +159,8 @@ public class MenuDrawer extends AppCompatActivity  {
 
        }else if (item.getTitle().equals(getString(R.string.feedback))){
            Toast.makeText(this, "Feedbak", Toast.LENGTH_SHORT).show();
+           Intent feedback = new Intent(getApplicationContext(),Feedback.class);
+           startActivity(feedback);
            drawer.closeDrawers();
 
        }else if (item.getTitle().equals(getString(R.string.settings))) {
