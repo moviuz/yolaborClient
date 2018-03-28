@@ -64,6 +64,8 @@ public class Constants {
         public static final String GENDER = "gender";
         public static final String COMPANY = "idCompany";
         public static final String PARTNER = "idPartner";
+        public static final String LONGITUD = "longitude";
+        public static final String LATITUD = "latitude";
 
 
 

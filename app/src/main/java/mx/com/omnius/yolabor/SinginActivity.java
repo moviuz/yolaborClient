@@ -98,11 +98,12 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
         compSpiner = (Spinner) findViewById(R.id.spinner_company);
 
 
-         Button button = (Button) findViewById(R.id.singinButton);
-        button.setOnClickListener(new View.OnClickListener() {
+         Button btnsing = (Button) findViewById(R.id.singinButton);
+
+        btnsing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                singin();
+                registrar();
 
             }
         });
@@ -173,59 +174,23 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                         }
                     });
                 }
-
+                break;
             case Constants.ServiceCode.NEW_CLIENT:
-                Gson gson = new Gson();
-                UserModel user = gson.fromJson(response, UserModel.class);
-                if (user != null){
-                    if (user.getEmail().equals(txtName.getText().toString())&& user.getPassword().equals(txtPasword.getText().toString())){
-                        Intent Mapa = new Intent(getApplicationContext(), MenuDrawer.class);
-                        startActivity(Mapa);
+         if (!response.equals(null) & !response.equals(" ") ){
+                    Log.e("ERROR ENTRO SIN PERMISO", response);
+                    Intent Mapa = new Intent(getApplicationContext(), MenuDrawer.class);
+                            startActivity(Mapa);
                     }
-                }else{
+                else{
                     Toast.makeText(this, "Email or Password Invalid!!", Toast.LENGTH_SHORT).show();
                 }
-
 
 
                 break;
         }
 
     }
-        private void singin(){
-            latitud = YolaborApplication.preferenceHelper.getLongitudeC();
-            longitud = YolaborApplication.preferenceHelper.getLatitudeC();
-            Log.e("test1",txtName.getText().toString());
-            Log.e("test1",txtLastName.getText().toString());
-            Log.e("test1",txtEmail.getText().toString());
-            Log.e("test1",txtPasword.getText().toString());
-            Log.e("test1",textPhone.getText().toString());
-            Log.e("test1",textItin.getText().toString());
-            Log.e("test1",textBirtdate.getText().toString());
-            Log.e("test1",gender);
-            Log.e("test1latitud",latitud);
-            Log.e("test1LONGITUD",longitud);
 
-            /*HashMap<String, String> map = new HashMap<String, String>();
-            map.put(Constants.URL, Constants.ServiceType.SINGIN
-
-                    + Constants.Params.FIRSTNAME + "="
-                    + txtName.getText().toString() + "&"
-                    + Constants.Params.LASTNAME + "="
-                    + txtLastName.getText().toString() + "&"
-                    + Constants.Params.EMAIL + "="
-                    + txtEmail.getText().toString() + "&"
-                    + Constants.Params.PASSWORD + "="
-                    + txtPasword.getText().toString() + "&"
-                    + Constants.Params.PHONE + "="
-                    + textPhone.getText().toString() + "&"
-                    + Constants.Params.ITIN + "="
-                    + textItin.getText().toString() + "&" );
-
-
-            requestQueue.add(new VolleyHttpRequest(Request.Method.GET, map,
-                    Constants.ServiceCode.NEW_CLIENT, this, this)); */
-    }
     private void registrar() {
 
         HashMap<String, String> map = new HashMap<String, String>();
@@ -251,34 +216,15 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                 + "1" + "&"
                 + Constants.Params.PARTNER +  "="
                 +  "1" + "&"
-                + Constants.Params.LOGINMETHOD
-
-                + Constants.Params.MOTHERLENGUAGE +"="
-                + "1" + "&"
-                + Constants.Params.AVIABILITY + "="
-                + "Looking for job" + "&"
-                + Constants.Params.EXPERIENCE + "="
-                + "5" + "&"
-                + Constants.Params.RESUME + "="
-                + "LOREM IMPUTS ASPA ASKID ASDI" + "&"
-                + Constants.Params.LATITUDATEND + "="
-                + YolaborApplication.preferenceHelper.getLongitudeC() + "&"
-                + Constants.Params.LONGITUATTEND + "="
+                + Constants.Params.LATITUD + "="
                 + YolaborApplication.preferenceHelper.getLatitudeC() + "&"
-                + Constants.Params.RADIOATEEND + "="
-                + "0" + "&"
-                + Constants.Params.LATITUDE + "="
-                + YolaborApplication.preferenceHelper.getLongitudeC() + "&"
-                + Constants.Params.LONGITUDE + "="
-                + YolaborApplication.preferenceHelper.getLatitudeC() + "&"
+                + Constants.Params.LONGITUD + "="
+                + YolaborApplication.preferenceHelper.getLongitudeC() +"&"
                 + Constants.Params.LOGINMETHOD + "="
-                + "N" + "&"
-                + Constants.Params.ADDRESATEND + "="
-                + "a"
+                + "N"
+);
 
-        );
-
-        requestQueue.add(new VolleyHttpRequest(Request.Method.GET, map,
+       YolaborApplication.requestQueue.add(new VolleyHttpRequest(Request.Method.GET, map,
                 Constants.ServiceCode.NEW_CLIENT, this, this));
         Toast.makeText(this, "REGISTREAR", Toast.LENGTH_SHORT).show();
 
@@ -296,7 +242,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                     //Formateo el mes obtenido: antepone el 0 si son menores de 10
                     String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
                     //Muestro la fecha con el formato deseado
-                    textBirtdate.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
+                    textBirtdate.setText(year + BARRA + mesFormateado + BARRA + diaFormateado);
 
 
                 }
