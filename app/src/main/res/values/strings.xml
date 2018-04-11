@@ -59,6 +59,9 @@
     <string name="parnert">Partner</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="dialog_select_type_photo">Select Photo</string>
+    <string name="gallery_dialog">Gallery</string>
+    <string name="camera_dialog">Camera</string>
 
 
     <!--toolbarRequest-->
@@ -85,6 +88,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+
 
 
 </resources>

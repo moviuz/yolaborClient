@@ -12,7 +12,8 @@ public class Constants {
     // no request
     public static final int NO_REQUEST = -1;
     public static final int NO_TIME = -1;
-
+    public static final int SELECT_PHOTO = 112;
+    public static final int TAKE_PHOTO = 113;
 
     public static final int MAP_ZOOM = 16;
 

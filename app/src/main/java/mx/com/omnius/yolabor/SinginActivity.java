@@ -1,16 +1,17 @@
 package mx.com.omnius.yolabor;
 
+import android.*;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationManager;
-import android.location.LocationProvider;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v13.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,7 +22,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,37 +31,31 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.google.android.gms.location.LocationListener;
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import android.Manifest;
 
 import mx.com.omnius.yolabor.Model.CompanyModel;
-import mx.com.omnius.yolabor.Model.UserModel;
 import mx.com.omnius.yolabor.parse.AsyncTaskCompleteListener;
 import mx.com.omnius.yolabor.parse.VolleyHttpRequest;
 import mx.com.omnius.yolabor.utils.Constants;
-
-
-import static mx.com.omnius.yolabor.YolaborApplication.requestQueue;
 
 /**
  * Created by omnius on 23/02/18.
  */
 
-public class SinginActivity extends AppCompatActivity implements AsyncTaskCompleteListener,Response.ErrorListener {
+public class SinginActivity extends AppCompatActivity implements AsyncTaskCompleteListener,Response.ErrorListener, View.OnClickListener {
 
     public final Calendar c = Calendar.getInstance();
     private static final String CERO = "0";
     private static final String BARRA = "/";
     private LocationManager locManager;
     private Spinner compSpiner;
+    private Uri uri = null;
 
 
     //Variables para obtener la fecha
@@ -70,11 +65,12 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
 
 
     String gender;
-    EditText txtName,txtLastName,txtEmail, textPhone, textPassword, textItin, txtPasword;
-    TextView textBirtdate;
+    EditText cfirstname,clastname,cemail, cphone, cpassword, textItin, txtPasword;
+    TextView cresult;
     ImageButton dateBirth;
     RadioGroup rgroupGender;
     String latitud,longitud;
+    ImageView profilePhoto;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -84,16 +80,17 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
 
         setContentView(R.layout.activity_singin);
 
-        txtName = (EditText) findViewById(R.id.cfirstname);
-        txtLastName = (EditText) findViewById(R.id.clastname);
-        txtEmail = (EditText) findViewById(R.id.cemail);
-        textPhone =(EditText) findViewById(R.id.cphone);
-        textPassword = (EditText) findViewById(R.id.cpassword);
-        textBirtdate = (TextView) findViewById(R.id.cresult);
+        cfirstname = (EditText) findViewById(R.id.cfirstname);
+        clastname = (EditText) findViewById(R.id.clastname);
+        cemail = (EditText) findViewById(R.id.cemail);
+        cphone =(EditText) findViewById(R.id.cphone);
+        cpassword = (EditText) findViewById(R.id.cpassword);
+        cresult = (TextView) findViewById(R.id.cresult);
         textItin = (EditText) findViewById(R.id.citin);
         txtPasword = (EditText) findViewById(R.id.cpassword) ;
         dateBirth = (ImageButton) findViewById(R.id.cbtn_date);
         rgroupGender =(RadioGroup) findViewById(R.id.crgroup);
+        profilePhoto = (ImageView) findViewById(R.id.image_profile);
 
         compSpiner = (Spinner) findViewById(R.id.spinner_company);
 
@@ -108,6 +105,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
             }
         });
 
+
         dateBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +113,8 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
             }
         });
 
+      profilePhoto.setOnClickListener(this);
+        //  profilePhoto.setOnClickListener(this);
 
         rgroupGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -138,6 +138,30 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
 
 
     }
+
+
+    @Override
+    public  void   onClick(View view) {
+        switch (view.getId()) {
+            case R.id.image_profile:
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                        if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                            showPictureDialog();
+                        }else{
+                            android.support.v4.app.ActivityCompat.requestPermissions(this, new String[]{ android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                        }
+                    }else{
+                        android.support.v4.app.ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                    }
+                }else{
+                    showPictureDialog();
+                }
+                break;
+        }
+    }
+
+
 
     private void allCompany() {
         HashMap<String, String> map = new HashMap<String, String>();
@@ -197,17 +221,17 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
         map.put(Constants.URL,Constants.ServiceType.SINGIN
 
                 + Constants.Params.FIRSTNAME + "="
-                + txtName.getText().toString() + "&"
+                + cfirstname.getText().toString() + "&"
                 + Constants.Params.LASTNAME + "="
-                + txtLastName.getText().toString() + "&"
+                + clastname.getText().toString() + "&"
                 + Constants.Params.EMAIL + "="
-                + txtEmail.getText().toString() + "&"
+                + cemail.getText().toString() + "&"
                 + Constants.Params.PHONE + "="
-                + textPhone.getText().toString() + "&"
+                + cphone.getText().toString() + "&"
                 + Constants.Params.PASSWORD + "="
-                + textPassword.getText().toString() + "&"
+                + cpassword.getText().toString() + "&"
                 + Constants.Params.BIRTHDATE + "="
-                + textBirtdate.getText().toString() + "&"
+                + cresult.getText().toString() + "&"
                 + Constants.Params.GENDER + "="
                 + gender.toString() + "&"
                 + Constants.Params.ITIN + "="
@@ -242,7 +266,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                     //Formateo el mes obtenido: antepone el 0 si son menores de 10
                     String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
                     //Muestro la fecha con el formato deseado
-                    textBirtdate.setText(year + BARRA + mesFormateado + BARRA + diaFormateado);
+                    cresult.setText(year + BARRA + mesFormateado + BARRA + diaFormateado);
 
 
                 }
@@ -255,7 +279,57 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
             recogerFecha.show();
 
         }
+    private void showPictureDialog() {
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
+        pictureDialog.setTitle(getResources().getString(
+                R.string.dialog_select_type_photo));
+        String[] pictureDialogItems = {getResources().getString(R.string.gallery_dialog), getResources().getString(R.string.camera_dialog)};
 
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                selectPhotoFromGallery();
+                                break;
+                            case 1:
+                                takePhoto();
+                                break;
+                        }
+                    }
+                });
+        pictureDialog.show();
+    }
+
+    private void takePhoto() {
+        Calendar cal = Calendar.getInstance();
+        File file = new File(Environment.getExternalStorageDirectory(), (cal.getTimeInMillis() + ".jpg"));
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            file.delete();
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        uri = Uri.fromFile(file);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(cameraIntent, Constants.TAKE_PHOTO);
+    }
+
+    private void selectPhotoFromGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, Constants.SELECT_PHOTO);
+    }
     @Override
     public void onErrorResponse(VolleyError error) {
         error.printStackTrace();

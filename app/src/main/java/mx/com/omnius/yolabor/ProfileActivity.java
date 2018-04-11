@@ -85,6 +85,8 @@ public class ProfileActivity extends AppCompatActivity  {
 
     }
 
+
+
     //BottomNavigationIcon
     private void initComponent() {
         view_pager = (ViewPager) findViewById(R.id.view_pager);
