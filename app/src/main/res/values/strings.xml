@@ -62,6 +62,7 @@
     <string name="dialog_select_type_photo">Select Photo</string>
     <string name="gallery_dialog">Gallery</string>
     <string name="camera_dialog">Camera</string>
+    <string name="toast_unable_to_selct_image">unable to select image</string>
 
 
     <!--toolbarRequest-->

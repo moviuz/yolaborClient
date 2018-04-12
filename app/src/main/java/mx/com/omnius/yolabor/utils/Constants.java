@@ -30,6 +30,7 @@ public class Constants {
         public static final String HISTORY = HOST_URL + "yolabor/webresources/service/getAllJobItemByClient?";
         public static final String ALLCOMPANY = HOST_URL + "yolabor/webresources/service/getAllCompany?";
         public static final String SUPPORT = HOST_URL + "yolabor/webresources/service/setSupport?";
+        public static final String UPLOAD_CLIENT_PHOTO = "http://omnius.com.mx:7080/yolabor/uploadclientphoto";
 
 
     }

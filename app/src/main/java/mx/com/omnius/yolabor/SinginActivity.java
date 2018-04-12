@@ -6,7 +6,9 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.LocationManager;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
+import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,6 +45,7 @@ import java.util.HashMap;
 import mx.com.omnius.yolabor.Model.CompanyModel;
 import mx.com.omnius.yolabor.parse.AsyncTaskCompleteListener;
 import mx.com.omnius.yolabor.parse.VolleyHttpRequest;
+import mx.com.omnius.yolabor.utils.AppLog;
 import mx.com.omnius.yolabor.utils.Constants;
 
 /**
@@ -56,6 +60,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
     private LocationManager locManager;
     private Spinner compSpiner;
     private Uri uri = null;
+    private String profileImageData, profileImageFilePath;
 
 
     //Variables para obtener la fecha
@@ -338,7 +343,101 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
 
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == Constants.SELECT_PHOTO) {
+            if (data != null) {
+
+                Uri contentURI = data.getData();
+                AppLog.Log("", "Choose photo on activity result "+ contentURI);
+                beginCrop(contentURI);
+            }
+
+        } else if (requestCode == Constants.TAKE_PHOTO) {
+
+            if (uri != null) {
+
+                profileImageFilePath = uri.getPath();
+                AppLog.Log("", "Take photo on activity result");
+                beginCrop(uri);
+            } else {
+                Toast.makeText(this, R.string.toast_unable_to_selct_image, Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == Crop.REQUEST_CROP) {
+            AppLog.Log("", "Crop photo on activity result");
+            handleCrop(resultCode, data);
+        }
+    }
 
 
+    private void beginCrop(Uri source) {
+        Uri outputUri = Uri.fromFile(new File(Environment
+                .getExternalStorageDirectory(), (Calendar.getInstance()
+                .getTimeInMillis() + ".jpg")));
+        //new Crop(source).output(outputUri).asSquare().start(this);
+        Crop.of(source, outputUri).asSquare().start(this);
 
+    }
+
+    private void handleCrop(int resultCode, Intent result) {
+        if (resultCode == RESULT_OK) {
+            AppLog.Log("", "Handle crop");
+            profileImageData = getRealPathFromURI(Crop.getOutput(result));
+            AppLog.Log("","ruta de imagen0 "+String.valueOf(profileImageData));
+            try {
+                ExifInterface ei = new ExifInterface(getRealPathFromURI(Crop.getOutput(result)));
+                int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+                switch(orientation) {
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                        profilePhoto.setRotation(90);
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        profilePhoto.setRotation(180);
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_270:
+                        profilePhoto.setRotation(270);
+                        break;
+                    case ExifInterface.ORIENTATION_UNDEFINED:
+                        profilePhoto.setRotation(0);
+                        break;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+/*
+            SharedPreferences prefs =
+                    getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("ImagePerfil", String.valueOf((Crop.getOutput(result))));
+            editor.commit();
+
+            AppLog.Log("","ruta de imagen "+String.valueOf((Crop.getOutput(result))));
+            */
+
+
+            profilePhoto.setImageURI(Crop.getOutput(result));
+
+        } else if (resultCode == Crop.RESULT_ERROR) {
+
+            Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) {
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
+    }
 }
