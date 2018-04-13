@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v13.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -102,24 +103,15 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
 
          Button btnsing = (Button) findViewById(R.id.singinButton);
 
-        btnsing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registrar();
-
-            }
-        });
+        btnsing.setOnClickListener(this);
 
 
-        dateBirth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                obtenerFecha();
-            }
-        });
+        dateBirth.setOnClickListener(this);
 
       profilePhoto.setOnClickListener(this);
         //  profilePhoto.setOnClickListener(this);
+
+        //rgroupGender.setOnClickListener(this);
 
         rgroupGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -163,9 +155,20 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                     showPictureDialog();
                 }
                 break;
+            case R.id.cbtn_date:
+                obtenerFecha();
+                break;
+
+            case R.id.singinButton:
+                validar();
+
+                registrar();
+                break;
         }
     }
 
+    private void validar() {
+    }
 
 
     private void allCompany() {
@@ -216,6 +219,28 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
 
 
                 break;
+        }
+
+    }
+
+    private void emptySlot(){
+
+
+
+        if (TextUtils.isEmpty(cfirstname.getText().toString())){
+            Toast.makeText(this, R.string.empty_slot, Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(clastname.getText().toString())){
+            Toast.makeText(this, R.string.empty_slot, Toast.LENGTH_LONG).show();
+        }else  if (TextUtils.isEmpty(cemail.getText().toString())){
+            Toast.makeText(this,R.string.empty_slot, Toast.LENGTH_SHORT).show();
+        }else  if (TextUtils.isEmpty(cphone.getText().toString())){
+            Toast.makeText(this, R.string.empty_slot, Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(cpassword.getText().toString())){
+            Toast.makeText(this ,R.string.empty_slot, Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(cphone.getText().toString())){
+            Toast.makeText(this,R.string.empty_slot, Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(textItin.getText().toString())){
+            Toast.makeText(this, R.string.empty_slot, Toast.LENGTH_LONG).show();
         }
 
     }
