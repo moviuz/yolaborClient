@@ -214,7 +214,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                                 }
                             }
                         }
-                            /Toast.makeText(adapterView.getContext(), (String) adapterView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                          //Toast.makeText(adapterView.getContext(), (String) adapterView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
