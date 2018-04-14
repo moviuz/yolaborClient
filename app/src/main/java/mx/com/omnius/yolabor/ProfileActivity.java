@@ -1,6 +1,7 @@
 package mx.com.omnius.yolabor;
 
 import android.app.DatePickerDialog;
+import android.graphics.Bitmap;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,9 +16,17 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,6 +35,8 @@ import java.util.List;
 import mx.com.omnius.yolabor.Fragments.PerfilFragment;
 import mx.com.omnius.yolabor.Fragments.SkillFragment;
 import mx.com.omnius.yolabor.Fragments.TimeFragment;
+import mx.com.omnius.yolabor.Model.Image;
+import mx.com.omnius.yolabor.utils.Constants;
 
 
 /**
@@ -50,8 +61,10 @@ public class ProfileActivity extends AppCompatActivity  {
     private TextView txt_result;
     private EditText firstname, lastename, email, password,phone;
     private RelativeLayout relativeLayout;
-    private ImageButton btnCalendar;
+    private ImageButton btnCalendar ;
+    private ImageView image_profile;
     private RadioGroup radioGroup;
+    RequestQueue request;
 
 
 
@@ -63,6 +76,7 @@ public class ProfileActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        request = Volley.newRequestQueue(getApplicationContext());
         setContentView(R.layout.activity_proffile);
        firstname = (EditText) findViewById(R.id.firstname_proff);
         lastename = (EditText) findViewById(R.id.lastname_proff) ;
@@ -72,6 +86,7 @@ public class ProfileActivity extends AppCompatActivity  {
         btnCalendar = (ImageButton) findViewById(R.id.btn_date);
         txt_result = (TextView) findViewById(R.id.txt_result);
         radioGroup = (RadioGroup) findViewById(R.id.radio_proff);
+        image_profile = (ImageView) findViewById(R.id.image_profile);
        llenarcampos();
         //initComponent();
 
@@ -146,6 +161,7 @@ public class ProfileActivity extends AppCompatActivity  {
         password.setText((YolaborApplication.preferenceHelper.getPassword()));
         phone.setText(YolaborApplication.preferenceHelper.getPhone());
         txt_result.setText(YolaborApplication.preferenceHelper.getBirthdate());
+        getImageProfile();
 
 
 
@@ -182,6 +198,28 @@ public class ProfileActivity extends AppCompatActivity  {
         },anio, mes, dia);
         //Muestro el widget
         recogerFecha.show();
+
+    }
+
+    public void getImageProfile(){
+        String url = Constants.ServiceType.GET_PHOTO_PROFILE+YolaborApplication.preferenceHelper.getClientid()+".jpg";
+        final ImageRequest imageRequest = new ImageRequest(url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        image_profile.setImageBitmap(response);
+                        if ((response.getWidth()> 1000)&&(response.getHeight() >100)){
+                            image_profile.setRotation(90);
+                        }
+
+                    }
+                },0,0, ImageView.ScaleType.CENTER,null, new Response.ErrorListener(){
+            @Override
+            public  void onErrorResponse(VolleyError error){
+                Toast.makeText(ProfileActivity.this, "Error al cargar imagen", Toast.LENGTH_SHORT).show();
+            }
+        });
+        request.add(imageRequest);
 
     }
 

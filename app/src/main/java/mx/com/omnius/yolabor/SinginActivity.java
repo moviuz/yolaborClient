@@ -45,6 +45,7 @@ import java.util.HashMap;
 
 import mx.com.omnius.yolabor.Model.CompanyModel;
 import mx.com.omnius.yolabor.parse.AsyncTaskCompleteListener;
+import mx.com.omnius.yolabor.parse.MultiPartRequester;
 import mx.com.omnius.yolabor.parse.VolleyHttpRequest;
 import mx.com.omnius.yolabor.utils.AppLog;
 import mx.com.omnius.yolabor.utils.Constants;
@@ -204,7 +205,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                             String company = (String) adapterView.getItemAtPosition(position);
                             for (int i = 0; i < listIdCompany.size();i++){
                                 String tmporal = listIdCompany.get(i);
-                                String[] parts = tmporal.split("/");
+                                String[] parts = tmporal.split("-");
                                 String partNombre = parts[0];
                                 String partId = parts[1];
                                 if (partNombre.equals(company)){
@@ -213,8 +214,6 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
 
                                 }
                             }
-                        }
-                          //Toast.makeText(adapterView.getContext(), (String) adapterView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -228,6 +227,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
          if (!response.equals(null) & !response.equals(" ") ){
                     Log.e("ERROR ENTRO SIN PERMISO", response);
 
+                    sendImage();
                     Intent Mapa = new Intent(getApplicationContext(), MenuDrawer.class);
                             startActivity(Mapa);
                     }
@@ -259,6 +259,8 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
             Toast.makeText(this,R.string.empty_slot, Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(textItin.getText().toString())){
             Toast.makeText(this, R.string.empty_slot, Toast.LENGTH_LONG).show();
+        }else {
+            registrar();
         }
 
     }
@@ -482,5 +484,13 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
             cursor.close();
         }
         return result;
+
+    }
+    private void sendImage(){
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put(Constants.URL, Constants.ServiceType.UPLOAD_CLIENT_PHOTO);
+        map.put(Constants.Params.IDCLIENT, YolaborApplication.preferenceHelper.getUserId());
+        map.put(Constants.Params.PICTURE, (profileImageData != null ? profileImageData : ""));
+        new MultiPartRequester(this, map, Constants.ServiceCode.UPLOAD_CLIENT_PHOTO, this);
     }
 }

@@ -1,6 +1,7 @@
 package mx.com.omnius.yolabor;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -17,12 +18,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,6 +65,8 @@ public class MenuDrawer extends AppCompatActivity  {
     private boolean is_account_mode = false;
     private TextView textView, name;
     private String x;
+    private ImageView imageProfile;
+    RequestQueue request;
 
 
     @Override
@@ -77,6 +84,8 @@ public class MenuDrawer extends AppCompatActivity  {
 
        initComponent();
         initNavigationMenu();
+        request = Volley.newRequestQueue(getApplicationContext());
+        loadImage();
        // llenarcampos();
         Log.e("DENTRO DEL IF","MENUDRAWABLE");
 
@@ -136,6 +145,7 @@ public class MenuDrawer extends AppCompatActivity  {
         x = YolaborApplication.preferenceHelper.getEmail();
         Log.e("YYY esto YYY", x);
         textView.setText(x);
+        imageProfile = navigation_header.findViewById(R.id.avatar);
         name.setText(YolaborApplication.preferenceHelper.getFirstName() + YolaborApplication.preferenceHelper.getLastName());
 
 
@@ -273,6 +283,32 @@ public class MenuDrawer extends AppCompatActivity  {
 
     }
 
+
+    public void loadImage(){
+        String url = Constants.ServiceType.GET_PHOTO_PROFILE+YolaborApplication.preferenceHelper.getClientid()+".jpg";
+        Log.e("RUTA IMAGEN", url);
+        final ImageRequest imageRequest = new ImageRequest(url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        imageProfile.setImageBitmap(response);
+                        if ((response.getWidth()> 1000)&&(response.getHeight() >100)){
+                            imageProfile.setRotation(90);
+                        }
+
+
+
+                    }
+                },0,0, ImageView.ScaleType.CENTER,null, new Response.ErrorListener(){
+            @Override
+            public  void onErrorResponse(VolleyError error){
+                Toast.makeText(MenuDrawer.this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        request.add(imageRequest);
+
+    }
 
 
 }

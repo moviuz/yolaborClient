@@ -32,8 +32,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/image_perfi"
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/image_profile"
                     android:layout_width="112dp"
                     android:layout_height="86dp"
                     app:srcCompat="@drawable/pacount" />

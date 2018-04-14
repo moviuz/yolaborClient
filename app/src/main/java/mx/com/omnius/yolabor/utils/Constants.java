@@ -24,6 +24,7 @@ public class Constants {
 
 
         private static final String HOST_URL = "http://omnius.com.mx:7080/";
+        private static final String HOST_URL_PORT = "http://omnius.com.mx/";
         public static final String LOGIN = HOST_URL + "yolabor/webresources/service/loginClient?";
         public static final String JOB_TYPE = HOST_URL + "yolabor/webresources/service/getAllJobType?";
         public static final String SINGIN = HOST_URL + "yolabor/webresources/service/setClient?";
@@ -31,6 +32,7 @@ public class Constants {
         public static final String ALLCOMPANY = HOST_URL + "yolabor/webresources/service/getAllCompany?";
         public static final String SUPPORT = HOST_URL + "yolabor/webresources/service/setSupport?";
         public static final String UPLOAD_CLIENT_PHOTO = "http://omnius.com.mx:7080/yolabor/uploadclientphoto";
+        public static final String GET_PHOTO_PROFILE = HOST_URL_PORT + "proyectos/yolabor/images/Client/";
 
 
     }
@@ -43,6 +45,7 @@ public class Constants {
         public static final int HISTORY_CLIENT= 4;
         public static final int ALLCOMPANY = 5;
         public static final int SUPPORT = 6;
+        public static final int UPLOAD_CLIENT_PHOTO = 7;
     }
 
     // webservice key constants
@@ -68,6 +71,7 @@ public class Constants {
         public static final String PARTNER = "idPartner";
         public static final String LONGITUD = "longitude";
         public static final String LATITUD = "latitude";
+
 
 
 
