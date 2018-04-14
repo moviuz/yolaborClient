@@ -160,9 +160,9 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                 break;
 
             case R.id.singinButton:
-                validar();
+                emptySlot();
 
-                registrar();
+               // registrar();
                 break;
         }
     }
@@ -186,18 +186,35 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
         switch (serviceCode) {
             case Constants.ServiceCode.ALLCOMPANY:
                 Gson gns = new Gson();
-                ArrayList<String> listCompany = new ArrayList<String>();
+                final ArrayList<String> listCompany = new ArrayList<String>();
+                final ArrayList<String> listIdCompany = new ArrayList<String>();
                 CompanyModel[] listaComp = gns.fromJson(response, CompanyModel[].class);
                 if (listaComp != null){
                     for (int i = 0; i < listaComp.length; i++) {
                         String datos = listaComp[i].getName();
+                        String ids = listaComp[i].getName() +"-"+ listaComp[i].getIdCompany();
                         listCompany.add(datos);
+                        listIdCompany.add(ids);
                 }
                     compSpiner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listCompany));
                     compSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                            Toast.makeText(adapterView.getContext(), (String) adapterView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                            String company = (String) adapterView.getItemAtPosition(position);
+                            for (int i = 0; i < listIdCompany.size();i++){
+                                String tmporal = listIdCompany.get(i);
+                                String[] parts = tmporal.split("/");
+                                String partNombre = parts[0];
+                                String partId = parts[1];
+                                if (partNombre.equals(company)){
+                                    String idTemporal = partId;
+                                    YolaborApplication.preferenceHelper.putIdCompany(idTemporal);
+
+                                }
+                            }
+                        }
+                            /Toast.makeText(adapterView.getContext(), (String) adapterView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -210,6 +227,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
             case Constants.ServiceCode.NEW_CLIENT:
          if (!response.equals(null) & !response.equals(" ") ){
                     Log.e("ERROR ENTRO SIN PERMISO", response);
+
                     Intent Mapa = new Intent(getApplicationContext(), MenuDrawer.class);
                             startActivity(Mapa);
                     }

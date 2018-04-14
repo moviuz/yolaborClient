@@ -48,6 +48,7 @@ public class PreferenceHelper {
     private final String GENDER = "gender";
     private final String ITIN = "itin";
     private final String COMPANY = "company";
+    private final String IDCOMPANY = "idCompany";
 
 
 
@@ -520,7 +521,15 @@ public String getLatitudeC(){ return  app_prefs.getString(LATITUDE_C, "");}
     public String getCompany(){return app_prefs.getString(COMPANY,null);}
 
 
+    public void putIdCompany(String idCompany){
+        SharedPreferences.Editor edit = app_prefs.edit();
+        edit.putString(IDCOMPANY, idCompany);
+        edit.commit();
+    }
 
+    public String getIDCOMPANY() {
+        return app_prefs.getString(IDCOMPANY, null);
+    }
 
 
 

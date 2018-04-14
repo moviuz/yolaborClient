@@ -91,6 +91,6 @@
     <string name="title_notifications">Notifications</string>
 
     <!--Others-->
-    <string name="empty_slot">Empty Field: </string>
+    <string name="empty_slot">Empty Field</string>
 
 </resources>
