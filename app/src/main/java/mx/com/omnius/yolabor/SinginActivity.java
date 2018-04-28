@@ -34,6 +34,8 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.soundcloud.android.crop.Crop;
 
@@ -49,12 +51,14 @@ import mx.com.omnius.yolabor.parse.MultiPartRequester;
 import mx.com.omnius.yolabor.parse.VolleyHttpRequest;
 import mx.com.omnius.yolabor.utils.AppLog;
 import mx.com.omnius.yolabor.utils.Constants;
+import static mx.com.omnius.yolabor.YolaborApplication.preferenceHelper;
+import static mx.com.omnius.yolabor.YolaborApplication.requestQueue;
 
 /**
  * Created by omnius on 23/02/18.
  */
 
-public class SinginActivity extends AppCompatActivity implements AsyncTaskCompleteListener,Response.ErrorListener, View.OnClickListener {
+public class SinginActivity extends AppCompatActivity implements View.OnClickListener, AsyncTaskCompleteListener, Response.ErrorListener{
 
     public final Calendar c = Calendar.getInstance();
     private static final String CERO = "0";
@@ -82,9 +86,6 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_singin);
 
         cfirstname = (EditText) findViewById(R.id.cfirstname);
@@ -226,10 +227,9 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
             case Constants.ServiceCode.NEW_CLIENT:
          if (!response.equals(null) & !response.equals(" ") ){
                     Log.e("ERROR ENTRO SIN PERMISO", response);
-
+             YolaborApplication.preferenceHelper.putUserId(response);
                     sendImage();
-                    Intent Mapa = new Intent(getApplicationContext(), MenuDrawer.class);
-                            startActivity(Mapa);
+                    showAlertDialogAcep();
                     }
                 else{
                     Toast.makeText(this, "Email or Password Invalid!!", Toast.LENGTH_SHORT).show();
@@ -345,7 +345,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
                                 selectPhotoFromGallery();
                                 break;
                             case 1:
-                                takePhoto();
+                                takePhotoFromCamera();
                                 break;
                         }
                     }
@@ -353,7 +353,7 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
         pictureDialog.show();
     }
 
-    private void takePhoto() {
+    private void takePhotoFromCamera() {
         Calendar cal = Calendar.getInstance();
         File file = new File(Environment.getExternalStorageDirectory(), (cal.getTimeInMillis() + ".jpg"));
         if (!file.exists()) {
@@ -422,8 +422,9 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
         Uri outputUri = Uri.fromFile(new File(Environment
                 .getExternalStorageDirectory(), (Calendar.getInstance()
                 .getTimeInMillis() + ".jpg")));
-        //new Crop(source).output(outputUri).asSquare().start(this);
         Crop.of(source, outputUri).asSquare().start(this);
+
+
 
     }
 
@@ -492,5 +493,26 @@ public class SinginActivity extends AppCompatActivity implements AsyncTaskComple
         map.put(Constants.Params.IDCLIENT, YolaborApplication.preferenceHelper.getUserId());
         map.put(Constants.Params.PICTURE, (profileImageData != null ? profileImageData : ""));
         new MultiPartRequester(this, map, Constants.ServiceCode.UPLOAD_CLIENT_PHOTO, this);
+        Log.e("RUTA IMAGEN aaaaaa", profileImageData);
+        Log.e("IMAGEN URL ", String.valueOf(map));
+    }
+
+    private void showAlertDialogAcep() {
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_register);
+        Log.e("MSG ALERT DIALOG","msga");
+        builder.setPositiveButton(R.string.agree, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent login = new Intent(SinginActivity.this,LoginActivity.class);
+                startActivity(login);
+                finish();
+
+            }
+        });
+        // builder.setNegativeButton(R.string.CANCEL, null);
+        builder.show();
     }
 }
+
+

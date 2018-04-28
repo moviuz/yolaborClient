@@ -56,7 +56,7 @@ public class MenuDrawer extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private TabLayout tab_layout;
     private ViewPager view_pager;
-    private static final String[] pageTitle = {"Map","Request"};
+    private static final String[] pageTitle = {"Request"};
     private ActionBar actionBar;
     private Toolbar toolbar;
     private Menu menu_navigation;
@@ -204,8 +204,9 @@ public class MenuDrawer extends AppCompatActivity  {
 
     }
     private void setupTabIcons() {
-        tab_layout.getTabAt(0).setIcon(R.drawable.ic_google_maps);
-        tab_layout.getTabAt(1).setIcon(R.drawable.ic_request);
+        tab_layout.getTabAt(0).setIcon(R.drawable.ic_request);
+
+        // tab_layout.getTabAt(0).setIcon(R.drawable.ic_google_maps);
 
     }
 
@@ -238,7 +239,7 @@ public class MenuDrawer extends AppCompatActivity  {
         public SectionsPagerAdapter(FragmentManager manager) {
             super(manager);
             this.mFragmentList = new ArrayList<>();
-            mFragmentList.add(new MapFragment());
+           // mFragmentList.add(new MapFragment());
             mFragmentList.add(new JobRequestFragment());
 
         }

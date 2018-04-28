@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -50,6 +51,7 @@ public class MultiPartRequester {
             mAsynclistener = (AsyncTaskCompleteListener) asyncTaskCompleteListener;
             request = (AsyncHttpRequest) new AsyncHttpRequest().execute(map
                     .get("url"));
+            AppLog.Log(TAG,"console1 "+ request.toString());
         } else {
             Toast.makeText(activity, "Intrnet no disponible", Toast.LENGTH_SHORT).show();
         }
@@ -63,9 +65,10 @@ public class MultiPartRequester {
             try {
                 HttpPost httppost = new HttpPost(urls[0]);
                 httpclient = new DefaultHttpClient();
-                HttpConnectionParams.setConnectionTimeout(httpclient.getParams(), 600000);
+                HttpConnectionParams.setConnectionTimeout(httpclient.getParams(), 800000);
 
                 MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+
                 for (String key : map.keySet()) {
                     if (key.equalsIgnoreCase(Constants.Params.PICTURE) && !map.get(key).isEmpty()) {
                         File f = new File(map.get(key));
@@ -73,7 +76,9 @@ public class MultiPartRequester {
                     } else {
                         builder.addTextBody(key, map.get(key), ContentType.create("text/plain", MIME.UTF8_CHARSET));
                     }
-                    AppLog.Log(TAG, key + "---->" + map.get(key));
+                    AppLog.Log(TAG, key + "--x-->" + map.get(key));
+
+
                 }
                 httppost.setEntity(builder.build());
                 ActivityManager manager = (ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE);
@@ -81,8 +86,10 @@ public class MultiPartRequester {
                     System.gc();
                 }
                 HttpResponse response = httpclient.execute(httppost);
+                Log.e("multirequestview", "MENSAJE DE MULTIREQUEST...4");
                 String responseBody = EntityUtils.toString(response.getEntity(), "UTF-8");
-
+                Log.e("multirequestview", "MENSAJE DE MULTIREQUEST...5");
+                Log.e("MultirresponseBody", responseBody);
                 return responseBody;
 
             } catch (Exception e) {

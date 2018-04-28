@@ -49,6 +49,7 @@ public class PreferenceHelper {
     private final String ITIN = "itin";
     private final String COMPANY = "company";
     private final String IDCOMPANY = "idCompany";
+    private final String ID_DAY_M = "id_day_m";
 
 
 
@@ -532,5 +533,13 @@ public String getLatitudeC(){ return  app_prefs.getString(LATITUDE_C, "");}
     }
 
 
+    public void putIdDayM(String id_day_m) {
+        SharedPreferences.Editor edit = app_prefs.edit();
+        edit.putString(ID_DAY_M, id_day_m);
+        edit.commit();
+    }
 
+    public String getIdDayM() {
+        return app_prefs.getString(ID_DAY_M, "");
+    }
 }

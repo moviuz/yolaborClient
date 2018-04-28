@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/appbar"
+                tools:layout_editor_absoluteY="8dp">
+
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true">
+
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints">
+
+                        <Switch
+                            android:id="@+id/switAvailable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/avaliable" />
+
+                        <RadioGroup
+                            android:id="@+id/raButtonGender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/service"
+                                tools:layout_editor_absoluteX="29dp"
+                                tools:layout_editor_absoluteY="173dp" />
+
+                            <RadioButton
+                                android:id="@+id/raBtnMaleF"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/male"
+                                tools:layout_editor_absoluteX="234dp"
+                                tools:layout_editor_absoluteY="164dp" />
+
+                            <RadioButton
+                                android:id="@+id/raBtnFemaleF"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/female"
+                                tools:ignore="MissingConstraints"
+                                tools:layout_editor_absoluteX="106dp"
+                                tools:layout_editor_absoluteY="164dp" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.511"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+                        tools:ignore="MissingConstraints">
+
+                        <TextView
+                            android:id="@+id/duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/experience" />
+
+                        <android.support.v7.widget.AppCompatSeekBar
+                            android:id="@+id/seekbar_yrs"
+                            android:layout_width="165dp"
+                            android:layout_height="match_parent"
+                            android:max="15"
+                            android:progress="5"
+                            android:thumb="@drawable/seekbar_thumb_accent" />
+
+                        <TextView
+                            android:id="@+id/textYars"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="5" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/grey_10" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:minHeight="?attr/actionBarSize"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="@dimen/spacing_smlarge"
+                                android:layout_height="wrap_content" />
+
+                            <View
+                                android:layout_width="@dimen/spacing_smlarge"
+                                android:layout_height="wrap_content" />
+
+
+                            <TextView
+                                android:id="@+id/lunes"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:background="@drawable/rounded_textview"
+                                android:gravity="center"
+                                android:text="day"
+                                android:textColor="@android:color/white"
+                                android:textSize="17sp" />
+
+                            <TextView
+                                android:id="@+id/txtdias"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal"
+                                android:text="-"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/grey_40" />
+
+                            <ImageButton
+                                android:id="@+id/bt_toggle_days"
+                                android:layout_width="?attr/actionBarSize"
+                                android:layout_height="?attr/actionBarSize"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:tint="@color/grey_40"
+                                app:srcCompat="@drawable/ic_arrow_drop"
+                                tools:ignore="VectorDrawableCompat" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lyt_expand_hour"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_middle"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <RadioGroup
+                                    android:id="@+id/grupoDays"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="?attr/actionBarSize"
+                                    android:layout_marginRight="@dimen/spacing_smlarge"
+                                    android:gravity="center_vertical"
+                                    android:minHeight="@dimen/spacing_mxlarge"
+                                    android:orientation="vertical">
+
+                                    <RadioButton
+                                        android:id="@+id/checkBoxD1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/monday" />
+
+                                    <RadioButton
+                                        android:id="@+id/checkBoxD2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/tuesday" />
+
+                                    <RadioButton
+                                        android:id="@+id/checkBoxD3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/wednesday" />
+
+                                    <RadioButton
+                                        android:id="@+id/checkBoxD4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/thursday" />
+
+                                    <RadioButton
+                                        android:id="@+id/checkBoxD5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/friday" />
+
+                                    <RadioButton
+                                        android:id="@+id/checkBoxD6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/saturday" />
+
+                                    <RadioButton
+                                        android:id="@+id/checkBoxD7"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/sunday" />
+
+                                </RadioGroup>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout19"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout14"
+                        tools:ignore="MissingConstraints">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/hora_ini" />
+
+                        <android.support.v7.widget.AppCompatSeekBar
+                            android:id="@+id/seekBar_horaInicio"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:max="23"
+                            android:progress="0"
+                            android:thumb="@drawable/seekbar_thumb_accent" />
+
+                        <TextView
+                            android:id="@+id/txtHrIni"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/hours" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+                        tools:ignore="MissingConstraints">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/hora_fin" />
+
+                        <android.support.v7.widget.AppCompatSeekBar
+                            android:id="@+id/seekBar_horaFin"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:max="23"
+                            android:progress="0"
+                            android:thumb="@drawable/seekbar_thumb_accent" />
+
+                        <TextView
+                            android:id="@+id/txtHrFin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/hours" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="217dp">
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/grey_10" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:minHeight="?attr/actionBarSize"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="@dimen/spacing_smlarge"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/mon"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:background="@drawable/rounded_textview"
+                                android:gravity="center"
+                                android:text="@string/hours"
+                                android:textColor="@android:color/white"
+                                android:textSize="17sp" />
+
+                            <View
+                                android:layout_width="@dimen/spacing_smlarge"
+                                android:layout_height="wrap_content" />
+
+
+                            <TextView
+                                android:id="@+id/txtMon"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal"
+                                android:text="-"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/grey_40" />
+
+                            <View
+                                android:layout_width="@dimen/spacing_smlarge"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone" />
+
+                            <ImageButton
+                                android:id="@+id/bt_toggle_hours"
+                                android:layout_width="?attr/actionBarSize"
+                                android:layout_height="?attr/actionBarSize"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:tint="@color/grey_40"
+                                app:srcCompat="@drawable/ic_arrow_drop"
+                                tools:ignore="VectorDrawableCompat" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lyt_expand_hours"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_middle"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/spacing_middle"
+                                    android:layout_marginLeft="10dp"
+
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical">
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="12:00 - 01:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="01:00 - 02:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="02:00 - 03:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="03:00 - 04:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="04:00 - 05:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="05:00 - 06:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM7"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="06:00 - 07:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM8"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="07:00 - 08:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM9"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="08:00 - 09:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM10"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="09:00 - 10:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="10:00 - 11:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM12"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="11:00 - 12:00" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="@dimen/spacing_smlarge"
+                                    android:gravity="center_vertical"
+                                    android:minHeight="@dimen/spacing_mxlarge"
+                                    android:orientation="vertical">
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM13"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="12:00 - 13:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM14"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="13:00 - 14:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM15"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="14:00 - 15:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM16"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="15:00 - 16:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM17"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="16:00 - 17:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM18"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="17:00 - 18:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM19"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="18:00 - 19:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM20"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="19:00 - 20:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM21"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="20:00 - 21:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="21:00 - 22:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM23"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="22:00 - 23:00" />
+
+                                    <CheckBox
+                                        android:id="@+id/checkBoxM24"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="23:00 - 12:00" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="109dp"
+                        tools:layout_editor_absoluteY="299dp">
+
+                        <EditText
+                            android:id="@+id/editText4"
+                            style="@style/LoginSignUp5Input"
+                            android:layout_width="324dp"
+                            android:layout_height="match_parent"
+                            android:hint="@string/location"
+                            tools:layout_editor_absoluteX="10dp"
+                            tools:layout_editor_absoluteY="184dp" />
+
+                    </LinearLayout>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="512dp">
+
+        <Button
+            android:id="@+id/btn_cancel_filter_worker"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="164dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_send_worker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_send_worker"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="164dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginTop="4dp"
+            android:text="filtrar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_cancel_filter_worker"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -66,6 +66,11 @@
             android:name=".Feedback"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+        <activity
+            android:name=".SinginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -85,9 +90,6 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".SinginActivity"
-            android:label="@string/title_activity_singin" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

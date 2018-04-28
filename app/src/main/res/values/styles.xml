@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/button_orange_2</item>
+        <item name="colorPrimaryDark">@color/button_orange_2</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
@@ -25,8 +25,9 @@
         <item name="android:textCursorDrawable">@drawable/loginsignup_color_cursor</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
+
     <style name="ButtonOrange" parent="@android:style/Widget.Button">
-        <item name="android:background">@color/button_orange</item>
+        <item name="android:background">@color/button_orange_2</item>
     </style>
     <style name="ButtonWhite" parent="@android:style/Widget.Button">
         <item name="android:background">@color/button_white</item>

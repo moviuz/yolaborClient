@@ -63,6 +63,8 @@
     <string name="gallery_dialog">Gallery</string>
     <string name="camera_dialog">Camera</string>
     <string name="toast_unable_to_selct_image">unable to select image</string>
+    <string name="agree">Agree</string>
+    <string name="dialog_register">Successful registration</string>
 
 
     <!--toolbarRequest-->
@@ -92,5 +94,20 @@
 
     <!--Others-->
     <string name="empty_slot">Empty Field</string>
+    <string name="filter_worker">Filter Worker</string>
+    <string name="avaliable">Available</string>
+    <string name="experience">Experience</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Years</string>
+    <string name="wednesday">Years</string>
+    <string name="thursday">Years</string>
+    <string name="friday">Years</string>
+    <string name="saturday">Years</string>
+    <string name="hora_ini">Years</string>
+    <string name="hora_fin">Years</string>
+    <string name="years">Years</string>
+    <string name="sunday">Years</string>
+
+
 
 </resources>

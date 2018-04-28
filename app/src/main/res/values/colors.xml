@@ -11,6 +11,7 @@
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
+    <color name="primary_yb">#feaa0c</color>
 
 
     <color name="colorPrimary">#00BCD4</color>
@@ -18,6 +19,7 @@
     <color name="colorAccent">#448AFF</color>
 
     <color name="button_orange">#00BCD4</color>
+    <color name="button_orange_2">#feaa0c</color>>
     <color name="button_white">@android:color/white</color>
     <color name="button_blue">#40579b</color>
     <color name="button_green">#43bd42</color>
@@ -29,6 +31,7 @@
     <color name="main_menu_bg_active">#353a4c</color>
     <color name="main_menu_count_active">#ffffff</color>
     <color name="main_menu_count_nonactive">#84ff02</color>
+
 
 
     <!--==========================================================================================-->

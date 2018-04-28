@@ -68,7 +68,7 @@
         android:id="@+id/button_setting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
+        android:background="?android:attr/colorPressedHighlight"
         android:text="Save"
         android:textColor="@color/icons"
         app:layout_constraintBottom_toBottomOf="parent"

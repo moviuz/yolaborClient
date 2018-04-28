@@ -1,19 +1,28 @@
 package mx.com.omnius.yolabor.Fragments;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +48,7 @@ import mx.com.omnius.yolabor.utils.AppLog;
 import mx.com.omnius.yolabor.utils.Constants;
 import mx.com.omnius.yolabor.utils.Tools;
 import mx.com.omnius.yolabor.YolaborApplication;
+import mx.com.omnius.yolabor.utils.ViewAnimation;
 
 
 /**
@@ -47,10 +57,21 @@ import mx.com.omnius.yolabor.YolaborApplication;
 @SuppressLint("ValidFragment")
 
 public class JobRequestFragment extends Fragment implements View.OnClickListener, AsyncTaskCompleteListener, Response.ErrorListener {
-    private RadioButton raBtnInter, raBtnTras;
+    private RadioButton raBtnInter, raBtnTras, raBtnFemale, raBtnMale;
     private Spinner type, languaje;
     private ImageButton btnDate, btnTime;
-    private Button btnSendRequest;
+    private Button btnSendRequest, btnFilterWorker,btnCancelFilterWorker;
+    private SeekBar seekBarHoras, seekbar_yrs, seekBar_horaInicio, seekBar_horaFin;
+    private TextView txtHrs,txtDay,textYars,txtHrIni,txtHrFin,resul;
+    private ImageButton bt_toggle_days, bt_toggle_hours;
+    private View lyt_expand_days, lyt_expand_hours;
+    private NestedScrollView nested_scroll_view;
+    private Switch available;
+
+    int progressChangedValue = 4;
+    ArrayList<String> listDays = new ArrayList<String>();
+    ArrayList<String> listSkill = new ArrayList<String>();
+    private RadioGroup grupoDyas, raButtonGender;
    // private TextView resuldate;
 
     String[] types = {"Standard Interpretation", "Standard Translation", "Advanced Interpretation", "Advanced Traslation"};
@@ -69,11 +90,11 @@ public class JobRequestFragment extends Fragment implements View.OnClickListener
         btnDate.setOnClickListener(this);
         btnTime.setOnClickListener(this);
 
-        btnSendRequest = (Button) view.findViewById(R.id.btnSendRequest);
-        btnSendRequest.setOnClickListener(this);
+        btnFilterWorker = (Button) view.findViewById(R.id.btnFilterWorker);
+        btnFilterWorker.setOnClickListener(this);
 
 
-        type = (Spinner) view.findViewById(R.id.spinner_company);
+        type = (Spinner) view.findViewById(R.id.spinner_type);
         languaje = (Spinner) view.findViewById(R.id.spinner_languaje);
 
         languaje.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, languajes));
@@ -93,15 +114,6 @@ public class JobRequestFragment extends Fragment implements View.OnClickListener
 
             }
         });
-
-
-
-
-
-
-
-
-
 
 
 
@@ -136,6 +148,11 @@ public class JobRequestFragment extends Fragment implements View.OnClickListener
                 startActivity(job);
 
                 break;
+            case R.id.btnFilterWorker:
+                //emptySpace(); valido que no esten vacios los campos
+                showCustomDialog();
+                break;
+
         }
     }
 
@@ -232,6 +249,254 @@ public class JobRequestFragment extends Fragment implements View.OnClickListener
         Toast.makeText(getContext(), "Error al entrar en contacto con el servidor "+ error, Toast.LENGTH_SHORT).show();
     }
 
+    private void initComponent(Dialog view) {
+        txtDay = (TextView) view.findViewById(R.id.txtdias);
+        grupoDyas = (RadioGroup) view.findViewById(R.id.grupoDays);
 
+        // nested scrollview
+        nested_scroll_view = (NestedScrollView) view.findViewById(R.id.scrollView2);
+        // seccion monday
+        bt_toggle_days = (ImageButton) view.findViewById(R.id.bt_toggle_days);
+        lyt_expand_days = (View) view.findViewById(R.id.lyt_expand_hour);
+
+        bt_toggle_days.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleSection(view, lyt_expand_days);
+                checkDay( view);
+
+            }
+        });
+
+        nested_scroll_view = (NestedScrollView) view.findViewById(R.id.scrollView2);
+        // seccion monday
+        bt_toggle_hours = (ImageButton) view.findViewById(R.id.bt_toggle_hours);
+        lyt_expand_hours = (View) view.findViewById(R.id.lyt_expand_hours);
+
+        bt_toggle_hours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleSection(view, lyt_expand_hours);
+                //   checkMonday();
+            }
+        });
+    }
+
+    private void showCustomDialog() {
+
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.fragment_worker_filtrado);
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+        btnSendRequest = (Button) dialog.findViewById(R.id.btn_send_worker);
+        btnCancelFilterWorker = (Button) dialog.findViewById(R.id.btn_cancel_filter_worker);
+
+        gender(dialog);
+
+        initComponent(dialog);
+
+
+
+        ((AppCompatButton) dialog.findViewById(R.id.btn_send_worker)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // validarCampos();
+            }
+        });
+
+        ((AppCompatButton) dialog.findViewById(R.id.btn_cancel_filter_worker)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+
+    }
+
+    private void gender(Dialog dialog){
+
+        String experenceTemp = String.valueOf(progressChangedValue);
+       // KishApplication.preferenceHelper.putAvailable(Constants.NOT);
+       // KishApplication.preferenceHelper.putExperence(experenceTemp);
+
+        seekBar_horaInicio = (SeekBar) dialog.findViewById(R.id.seekBar_horaInicio);
+        seekBar_horaFin = (SeekBar) dialog.findViewById(R.id.seekBar_horaFin);
+        txtHrIni = (TextView) dialog.findViewById(R.id.txtHrIni);
+        txtHrFin = (TextView) dialog.findViewById(R.id.txtHrFin);
+        raBtnMale = (RadioButton) dialog.findViewById(R.id.raBtnMaleF);
+        raBtnFemale = (RadioButton) dialog.findViewById(R.id.raBtnFemaleF);
+        raButtonGender = (RadioGroup) dialog.findViewById(R.id.raButtonGender);
+        raButtonGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO Auto-generated method stub
+                if (checkedId == R.id.raBtnFemaleF){
+                    //KishApplication.preferenceHelper.putGender(Constants.Female);
+                }else if (checkedId == R.id.raBtnMaleF){
+                    //KishApplication.preferenceHelper.putGender(Constants.Male);
+                }
+            }
+
+        });
+
+        available = (Switch) dialog.findViewById(R.id.switAvailable);
+        available.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean bChecked) {
+                if (bChecked) {
+                   // KishApplication.preferenceHelper.putAvailable(Constants.YES);
+                } else {
+                    //KishApplication.preferenceHelper.putAvailable(Constants.NOT);
+                }
+            }
+        });
+
+        seekbar_yrs = (SeekBar) dialog.findViewById(R.id.seekbar_yrs);
+        textYars = (TextView) dialog.findViewById(R.id.textYars);
+
+        seekbar_yrs.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progressChangedValue = progress;
+                textYars.setText(progressChangedValue+"");
+
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                String experenceTemp = String.valueOf(progressChangedValue);
+               // KishApplication.preferenceHelper.putExperence(experenceTemp);
+
+            }
+        });
+
+        seekBar_horaInicio.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progressini = 0;
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progressini = progress;
+                txtHrIni.setText(progressini+"");
+
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                String horaIniTemp = String.valueOf(progressini);
+               // KishApplication.preferenceHelper.putHoraIni(horaIniTemp);
+            }
+        });
+
+        seekBar_horaFin.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progressfin = 0;
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progressfin = progress;
+                txtHrFin.setText(progressfin+"");
+
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                String horaFinTemp = String.valueOf(progressfin);
+                //KishApplication.preferenceHelper.putHoraFin(horaFinTemp);
+            }
+        });
+
+    }
+
+    private void toggleSection(View bt, final View lyt) {
+        boolean show = toggleArrow(bt);
+        if (show) {
+            ViewAnimation.expand(lyt, new ViewAnimation.AnimListener() {
+                @Override
+                public void onFinish() {
+                    Tools.nestedScrollTo(nested_scroll_view, lyt);
+                }
+            });
+        } else {
+            ViewAnimation.collapse(lyt);
+        }
+    }
+
+    public boolean toggleArrow(View view) {
+        if (view.getRotation() == 0) {
+            view.animate().setDuration(200).rotation(180);
+            return true;
+        } else {
+            view.animate().setDuration(200).rotation(0);
+            return false;
+        }
+    }
+
+    public void checkDay(View dialog){
+        grupoDyas.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+
+            @SuppressLint("ResourceType")
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO Auto-generated method stub
+
+                RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
+                if (checkedId == R.id.checkBoxD1){
+                    txtDay.setText(radioButton.getText().toString());
+                    getIdDay(txtDay.getText().toString());
+                }else if (checkedId == R.id.checkBoxD2){
+                    txtDay.setText(radioButton.getText().toString());
+                    getIdDay(txtDay.getText().toString());
+                }else if (checkedId == R.id.checkBoxD3){
+                    txtDay.setText(radioButton.getText().toString());
+                    getIdDay(txtDay.getText().toString());
+                }else if (checkedId == R.id.checkBoxD4){
+                    txtDay.setText(radioButton.getText().toString());
+                    getIdDay(txtDay.getText().toString());
+                }else if (checkedId == R.id.checkBoxD5){
+                    txtDay.setText(radioButton.getText().toString());
+                    getIdDay(txtDay.getText().toString());
+                }else if (checkedId == R.id.checkBoxD6){
+                    txtDay.setText(radioButton.getText().toString());
+                    getIdDay(txtDay.getText().toString());
+                }else if (checkedId == R.id.checkBoxD7){
+                    txtDay.setText(radioButton.getText().toString());
+                    getIdDay(txtDay.getText().toString());
+                }
+            }
+        });
+
+
+    }
+
+    public void getIdDay(String day){
+        for (int i = 0; i < listDays.size();i++){
+            String tmporal = listDays.get(i);
+            String[] parts = tmporal.split("/");
+            String partId = parts[0];
+            String partNombre = parts[1];
+            if (partNombre.equals(day)){
+                YolaborApplication.preferenceHelper.putIdDayM(partId);
+            }
+        }
+    }
 
 }

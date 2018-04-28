@@ -30,7 +30,7 @@ public class Utilities {
     private static ProgressDialog mProgressDialog;
     private static Dialog mDialog;
 
-   // private LoadingView imageview;
+    // private LoadingView imageview;
 
     public static void showSimpleProgressDialog(Context context, String title,
                                                 String msg, boolean isCancelable) {
@@ -54,7 +54,7 @@ public class Utilities {
     }
 
     public static void showSimpleProgressDialog(Context context) {
-       // showSimpleProgressDialog(context, null, context.getString(R.string.progress_loading), false);
+        // showSimpleProgressDialog(context, null, context.getString(R.string.progress_loading), false);
     }
 
     public static void removeSimpleProgressDialog() {
