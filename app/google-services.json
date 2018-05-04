@@ -8,6 +8,37 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1074171390384:android:fa91cca3176138dd",
+        "android_client_info": {
+          "package_name": "mx.com.omnius.yolaborClient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074171390384-o4g2llqm7fvjqud454te52tnraei67hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI8RbgneVLcQhHJxNFFimH7Wjs_7NYWvg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1074171390384:android:af1a49d54687e911",
         "android_client_info": {
           "package_name": "mx.com.omnius.yolaborWorker"

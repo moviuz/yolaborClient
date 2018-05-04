@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="?android:attr/statusBarColor"
                 app:tabGravity="fill"
                 app:tabMode="fixed" />
 

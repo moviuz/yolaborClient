@@ -271,9 +271,9 @@ public class SinginActivity extends AppCompatActivity implements View.OnClickLis
         map.put(Constants.URL,Constants.ServiceType.SINGIN
 
                 + Constants.Params.FIRSTNAME + "="
-                + cfirstname.getText().toString() + "&"
+                + cfirstname.getText().toString().replace(" ", "%20").trim() + "&"
                 + Constants.Params.LASTNAME + "="
-                + clastname.getText().toString() + "&"
+                + clastname.getText().toString().replace(" ", "%20").trim() + "&"
                 + Constants.Params.EMAIL + "="
                 + cemail.getText().toString() + "&"
                 + Constants.Params.PHONE + "="
@@ -287,9 +287,7 @@ public class SinginActivity extends AppCompatActivity implements View.OnClickLis
                 + Constants.Params.ITIN + "="
                 + textItin.getText().toString() + "&"
                 + Constants.Params.COMPANY + "="
-                + "1" + "&"
-                + Constants.Params.PARTNER +  "="
-                +  "1" + "&"
+                + YolaborApplication.preferenceHelper.getIDCOMPANY()+ "&"
                 + Constants.Params.LATITUD + "="
                 + YolaborApplication.preferenceHelper.getLatitudeC() + "&"
                 + Constants.Params.LONGITUD + "="

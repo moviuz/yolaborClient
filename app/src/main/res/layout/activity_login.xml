@@ -87,7 +87,7 @@
                 android:layout_height="150dp"
                 android:layout_above="@+id/inputCont"
                 android:layout_marginBottom="-200dp"
-                app:srcCompat="@drawable/ylabor" />
+                app:srcCompat="@drawable/ylaborxx" />
 
             <Button
                 android:id="@+id/btnSignIn"

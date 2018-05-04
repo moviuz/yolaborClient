@@ -41,10 +41,11 @@
     <string name="units">Units</string>
     <string name="cost">Cost</string>
     <string name="follow_up_desp">Follow up Description</string>
-    <string name="coments">Coments</string>
+    <string name="coments">Comments</string>
     <string name="scope">Scope</string>
     <string name="hours">hours</string>
     <string name="total_cost">Total Cost</string>
+    <string name="paymentReference">Payment Reference</string>
 
     <!--Profile-->
     <string name="phone">Phone</string>
@@ -107,6 +108,7 @@
     <string name="hora_fin">Years</string>
     <string name="years">Years</string>
     <string name="sunday">Years</string>
+    <string name="txt_feedback">Send us your feedback or request for help and we will answer you shory</string>
 
 
 

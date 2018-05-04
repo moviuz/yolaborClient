@@ -26,28 +26,26 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-
 import mx.com.omnius.yolabor.JobActivity;
 import mx.com.omnius.yolabor.Model.JobTypeModel;
 import mx.com.omnius.yolabor.R;
+import mx.com.omnius.yolabor.YolaborApplication;
 import mx.com.omnius.yolabor.parse.AsyncTaskCompleteListener;
 import mx.com.omnius.yolabor.parse.VolleyHttpRequest;
 import mx.com.omnius.yolabor.utils.AppLog;
 import mx.com.omnius.yolabor.utils.Constants;
 import mx.com.omnius.yolabor.utils.Tools;
-import mx.com.omnius.yolabor.YolaborApplication;
 import mx.com.omnius.yolabor.utils.ViewAnimation;
 
 
